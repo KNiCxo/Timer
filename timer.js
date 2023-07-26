@@ -1,3 +1,5 @@
+sound = document.querySelector('.js-sound');
+
 hourInput = document.querySelector('.js-hour');
 hourInput.value = '0';
 
@@ -5,7 +7,7 @@ minuteInput = document.querySelector('.js-minute');
 minuteInput.value = '0';
 
 secondInput = document.querySelector('.js-second');
-secondInput.value ='10';
+secondInput.value ='3';
 
 startStopButton = document.querySelector('.js-start-stop');
 resetButton = document.querySelector('.js-reset');
@@ -44,11 +46,15 @@ const countDown = (hours, minutes, seconds) => {
   intervalID = setInterval(() => {
     timeElapsed = Date.now() - startTime;
     //timeElapsed += 2000;
-    //console.log(totalTime - timeElapsed);
-    console.log((totalTime - timeElapsed) / 1000);
-    hours.value = Math.floor((totalTime - timeElapsed) / 3600000);
-    minutes.value = Math.floor((((totalTime - timeElapsed) / 1000) / 60) % 60);
-    seconds.value = Math.trunc(((totalTime - timeElapsed) / 1000) % 60);
+    if ((totalTime - timeElapsed) <= 0) {
+      clearInterval(intervalID);
+      sound.innerHTML = '<audio autoplay src="alarm.mp3"></audio>';
+    } else {
+      console.log((totalTime - timeElapsed) / 1000);
+      hours.value = Math.floor((totalTime - timeElapsed) / 3600000);
+      minutes.value = Math.floor((((totalTime - timeElapsed) / 1000) / 60) % 60);
+      seconds.value = Math.trunc(((totalTime - timeElapsed) / 1000) % 60);
+    }
   }, 1);
 };
 
