@@ -1,5 +1,5 @@
 hourInput = document.querySelector('.js-hour');
-hourInput.value = '2';
+hourInput.value = '0';
 
 minuteInput = document.querySelector('.js-minute');
 minuteInput.value = '0';
@@ -10,16 +10,16 @@ secondInput.value ='10';
 startStopButton = document.querySelector('.js-start-stop');
 resetButton = document.querySelector('.js-reset');
 
-// Used to check if stopwatch is running
+// Used to check if timer is running
 let isOn = false;
 
 // Keeps ID of setInterval function for clearing
 let intervalID;
 
-// Stores total time elapsed for when stopwatch is paused
+// Stores total time elapsed for when timer is paused
 let timeBank = 0;
 
-// Stores time elapsed while stopwatch is running
+// Stores time elapsed while timer is running
 let timeElapsed = 0;
 
 const setMax = (element, number) => {
@@ -35,7 +35,11 @@ const setMax = (element, number) => {
 };
 
 const countDown = (hours, minutes, seconds) => {
-  let totalTime = ((Number(hours.value) * 3600) + (Number(minutes.value) * 60) + Number(seconds.value) + 1) * 1000;
+  hours.readOnly = true;
+  minutes.readOnly = true;
+  seconds.readOnly = true;
+
+  let totalTime = ((Number(hours.value) * 3600) + (Number(minutes.value) * 60) + Number(seconds.value) + 0.5) * 1000;
   let startTime = Date.now();
   intervalID = setInterval(() => {
     timeElapsed = Date.now() - startTime;
