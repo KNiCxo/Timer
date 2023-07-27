@@ -43,7 +43,7 @@ const setMax = (element, max) => {
 
   // If input value is larger than max value, set to max value (i.e 45 --> 23)
   if (Number(element.value) > max) {
-    element.value = number.toString();
+    element.value = max.toString();
   }
 
   // If input is cleared, adds '0' digit placeholder
