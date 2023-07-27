@@ -6,7 +6,7 @@ minuteInput = document.querySelector('.js-minute');
 minuteInput.value = '0';
 
 secondInput = document.querySelector('.js-second');
-secondInput.value ='3';
+secondInput.value ='0';
 
 // Element for alarm sound notification
 sound = document.querySelector('.js-sound');
@@ -14,6 +14,10 @@ sound = document.querySelector('.js-sound');
 // Button elements
 startStopButton = document.querySelector('.js-start-stop');
 resetButton = document.querySelector('.js-reset');
+
+// Disables buttons until valid input is entered
+startStopButton.disabled = true;
+resetButton.disabled = true;
 
 // Used to check if timer is running
 let isOn = false;
@@ -47,6 +51,16 @@ const setMax = (element, max) => {
     element.value = '0';
   }
 };
+
+const isEmpty = () => {
+  if (Number(hourInput.value) + Number(minuteInput.value) + Number(secondInput.value) > 0) {
+    startStopButton.disabled = false;
+    resetButton.disabled = false;
+  } else {
+    startStopButton.disabled = true;
+    resetButton.disabled = true;
+  }
+}
 
 // Main function of timer
 const countDown = (hours, minutes, seconds) => {
@@ -97,9 +111,13 @@ const countDown = (hours, minutes, seconds) => {
     }, 1);
   } else {
     // Else, stops and store time remaining in timeBank
-    stop()
-    timeBank = totalTime - timeElapsed;
-    console.log(timeBank);
+    if ((totalTime - timeElapsed) <= 0 ) {
+      reset();
+    } else {
+      stop();
+      timeBank = totalTime - timeElapsed;
+      console.log(timeBank);
+    }
   }
 };
 
@@ -108,21 +126,42 @@ function stop() {
   isOn = false;
   clearInterval(intervalID);
   startStopButton.innerHTML = 'Start';
+  sound.innerHTML = '';
+}
+
+function reset() {
+  stop();
+  hourInput.value = '0';
+  minuteInput.value = '0';
+  secondInput.value = '0';
+  timeBank = 0;
+  hourInput.readOnly = false;
+  minuteInput.readOnly = false;
+  secondInput.readOnly = false;
+  startStopButton.disabled = true;
+  resetButton.disabled = true;
+  isFresh = true;
+  console.log(timeBank);
 }
 
 // Checks if input exceeds maximum allowed values
 hourInput.addEventListener('input', () => {
   setMax(hourInput, 23);
+  isEmpty();
 });
 
 minuteInput.addEventListener('input', () => {
   setMax(minuteInput, 59);
+  isEmpty();
 });
 
 secondInput.addEventListener('input', () => {
   setMax(secondInput, 59);
+  isEmpty();
 });
 
 startStopButton.addEventListener('click', () => {
   countDown(hourInput, minuteInput, secondInput);
 })
+
+resetButton.addEventListener('click', reset);
