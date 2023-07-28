@@ -11,19 +11,32 @@
   <!-- All timer elements -->
   <div class="clock">
     <input type="number" class="js-hour" min="0" max="23">
+    <container class="up-down">
+      <button class="up-down-buttons add">+</button>
+      <button class="up-down-buttons subtract">-</button>
+    </container>
     <span>:</span>
     <input type="number" class="js-minute" min="0" max="59">
+    <container class="up-down">
+      <button class="up-down-buttons add">+</button>
+      <button class="up-down-buttons subtract">-</button>
+    </container>
     <span>:</span>
     <input type="number" class="js-second" min="0" max="59">
+    <container class="up-down">
+      <button class="up-down-buttons add">+</button>
+      <button class="up-down-buttons subtract">-</button>
+    </container>
   </div>
 
   <!-- Container for sound notification -->
   <div class="js-sound"></div>
 
-
   <!-- All button elements -->
-  <button class="js-start-stop">Start</button>
-  <button class="js-reset">Reset</button>
+  <div class="buttons-div">
+    <button class="buttons js-start-stop">Start</button>
+    <button class="buttons js-reset">Reset</button>
+  </div>
 
   <script src="timer.js"></script>
 </body>

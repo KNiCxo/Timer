@@ -13,6 +13,16 @@
 body {
   background-color: rgb(45, 42, 42);
   color: white;
+  margin-top: 200px;
+}
+
+.clock, .buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+.clock, input {
+  font-family: roboto-thin;
 }
 
 /* Custom styling for input boxes */
@@ -25,6 +35,46 @@ input {
   color: white;
 }
 
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+.up-down {
+  display: inline-block;
+  width: 22px;
+  position: relative;
+  left: -40px;
+  top: 50px;
+}
+
+.up-down-buttons {
+  width: 30px;
+  height: 30px;
+  margin: 6px;
+  border: none;
+  border-radius: 16px;
+}
+
+.add {
+  background-color: rgb(111, 111, 190);
+  color: white;
+}
+
+.subtract {
+  background-color: rgb(185, 185, 189);
+}
+
+span {
+  position: relative;
+  top: -35px;
+}
+
 /* Decreases width of input boxes when timer is running */
 .running {
   width: 240px;
@@ -33,4 +83,28 @@ input {
 /* Font size of colons */
 span {
   font-size: 200px;
+}
+
+.buttons {
+  height: 70px;
+  width: 140px;
+  font-size: 35px;
+  font-family: oswald-regular;
+  margin-top: 100px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+/* Styling for Start/Stop button */
+.buttons:first-of-type {
+  margin-right: 50px;
+  background-color: rgb(111, 111, 190);
+}
+
+/* Styling for Reset button */
+.buttons:nth-child(2) {
+  color: black;
+  background-color: rgb(185, 185, 189);
 }
