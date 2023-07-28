@@ -1,12 +1,12 @@
 // Input elements for timer
 hourInput = document.querySelector('.js-hour');
-hourInput.value = '0';
+hourInput.value = '00';
 
 minuteInput = document.querySelector('.js-minute');
-minuteInput.value = '0';
+minuteInput.value = '00';
 
 secondInput = document.querySelector('.js-second');
-secondInput.value ='0';
+secondInput.value ='00';
 
 // Element for alarm sound notification
 sound = document.querySelector('.js-sound');
@@ -37,9 +37,15 @@ let timeElapsed = 0;
 // Saves remaining time for when timer is paused
 let timeBank = 0;
 
-const setMax = (element, max) => {
-  // Clears '0' digit placeholder with value that was input
-  element.value = Number(element.value);
+// Ensures input is correct and formatted properly
+const handleInput = (element, max) => {
+  // If element is less than 10, add leading 0
+  if (Number(element.value < 10)) {
+    element.value = '0' + Number(element.value);
+  } else {
+    // Else remove leading zero
+    element.value = Number(element.value);
+  }
 
   // If input value is larger than max value, set to max value (i.e 45 --> 23)
   if (Number(element.value) > max) {
@@ -69,6 +75,16 @@ const countDown = (hours, minutes, seconds) => {
   minutes.readOnly = true;
   seconds.readOnly = true;
   
+  // Removes increase/decrease arrows from input
+  hours.type = "text";
+  minutes.type = "text";
+  seconds.type = "text";
+
+  // Decreases input width for cleaner look
+  hours.classList.add("running");
+  minutes.classList.add("running");
+  seconds.classList.add("running");
+
   // If timer is not running, make the start button say 'Stop' and begin the timer function
   if (!isOn) {
     isOn = true;
@@ -102,11 +118,27 @@ const countDown = (hours, minutes, seconds) => {
         // Total Time Remaining / 1 Hour in Milliseconds = Hours Remaining
         hours.value = Math.trunc((totalTime - timeElapsed) / 3600000);
 
+        // If hour input is less than 10, add leading 0
+        if (Number(hours.value) < 10) {
+          hours.value = '0' + hours.value;
+        }
+
         // (Total Time Remaining / 1 Minute in Milliseconds) % 60 Minutes = Minutes Remaining
         minutes.value = Math.trunc(((totalTime - timeElapsed) / 60000) % 60);
 
+        // If minute input is less than 10, add leading 0
+        if (Number(minutes.value) < 10) {
+          minutes.value = '0' + minutes.value;
+        }
+
         // (Total Time Remaining / 1 Second) % 60 Seconds = Seconds Remaining
         seconds.value = Math.trunc(((totalTime - timeElapsed) / 1000) % 60);
+
+        // If second input is less than 10, add leading 0
+        if (Number(seconds.value) < 10) {
+          seconds.value = '0' + seconds.value;
+        }
+
       }
     }, 1);
   } else {
@@ -129,34 +161,53 @@ function stop() {
   sound.innerHTML = '';
 }
 
+// Stops timer and sets it to 'fresh' state
 function reset() {
   stop();
-  hourInput.value = '0';
-  minuteInput.value = '0';
-  secondInput.value = '0';
-  timeBank = 0;
+
+  // Clear input values
+  hourInput.value = '00';
+  minuteInput.value = '00';
+  secondInput.value = '00';
+
+  // Allow for values to be input again
   hourInput.readOnly = false;
   minuteInput.readOnly = false;
   secondInput.readOnly = false;
+
+  // Add back increase/decrease arrows
+  hourInput.type = "number";
+  minuteInput.type = "number";
+  secondInput.type = "number";
+
+  // Increase width of input boxes
+  hourInput.classList.remove("running");
+  minuteInput.classList.remove("running");
+  secondInput.classList.remove("running");
+
+  // Buttons are renabled
   startStopButton.disabled = true;
   resetButton.disabled = true;
+
+  // timeBank is cleared and timer is now 'fresh'
+  timeBank = 0;
   isFresh = true;
   console.log(timeBank);
 }
 
 // Checks if input exceeds maximum allowed values
 hourInput.addEventListener('input', () => {
-  setMax(hourInput, 23);
+  handleInput(hourInput, 23);
   isEmpty();
 });
 
 minuteInput.addEventListener('input', () => {
-  setMax(minuteInput, 59);
+  handleInput(minuteInput, 59);
   isEmpty();
 });
 
 secondInput.addEventListener('input', () => {
-  setMax(secondInput, 59);
+  handleInput(secondInput, 59);
   isEmpty();
 });
 

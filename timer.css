@@ -1,8 +1,10 @@
+/* Roboto Thin Font */
 @font-face {
   src: url(fonts/Roboto/Roboto-Thin.ttf);
   font-family: roboto-thin;
 }
 
+/* Oswald Regular Font */
 @font-face {
   src: url(fonts/Oswald/static/Oswald-Regular.ttf);
   font-family: oswald-regular;
@@ -11,4 +13,24 @@
 body {
   background-color: rgb(45, 42, 42);
   color: white;
+}
+
+/* Custom styling for input boxes */
+input {
+  background: transparent;
+  border: none;
+  width: 270px;
+  height: 160px;
+  font-size: 200px;
+  color: white;
+}
+
+/* Decreases width of input boxes when timer is running */
+.running {
+  width: 240px;
+}
+
+/* Font size of colons */
+span {
+  font-size: 200px;
 }
