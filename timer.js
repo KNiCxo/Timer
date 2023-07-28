@@ -107,10 +107,11 @@ const countDown = (hours, minutes, seconds) => {
       timeElapsed = Date.now() - startTime;
       //timeElapsed += 2000;
 
-      // If time elapsed exceeds timer input, clear interval and play sound notification
+      // If time elapsed exceeds timer input, clear interval, change title, and play sound notification
       if ((totalTime - timeElapsed) <= 0) {
         clearInterval(intervalID);
         sound.innerHTML = '<audio autoplay loop src="alarm.mp3"></audio>';
+        document.title = 'Time is up!'
       } else {
         // Else update timer elements with Math.trunc to remove decimal values
         console.log((totalTime - timeElapsed) / 1000);
@@ -139,6 +140,8 @@ const countDown = (hours, minutes, seconds) => {
           seconds.value = '0' + seconds.value;
         }
 
+        // Shows timer in title
+        document.title = `${hours.value}:${minutes.value}:${seconds.value} - Timer`;
       }
     }, 1);
   } else {
@@ -153,11 +156,13 @@ const countDown = (hours, minutes, seconds) => {
   }
 };
 
-// Stops timer and changes stop button to 'Start'
+// Stops timer, changes stop button to 'Start', changes title, and removes sound
+// notification (if it is playing)
 function stop() {
   isOn = false;
   clearInterval(intervalID);
   startStopButton.innerHTML = 'Start';
+  document.title = 'Timer';
   sound.innerHTML = '';
 }
 
