@@ -29,6 +29,7 @@ body {
 input {
   background: transparent;
   border: none;
+  outline: none;
   width: 270px;
   height: 160px;
   font-size: 200px;
@@ -59,6 +60,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 6px;
   border: none;
   border-radius: 16px;
+  cursor: pointer;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .add {
@@ -77,7 +83,7 @@ span {
 
 /* Decreases width of input boxes when timer is running */
 .running {
-  width: 240px;
+  width: 210px;
 }
 
 /* Font size of colons */

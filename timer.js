@@ -8,6 +8,15 @@ minuteInput.value = '00';
 secondInput = document.querySelector('.js-second');
 secondInput.value ='00';
 
+// Elements for +/- buttons
+upDownButtons = document.querySelectorAll('.js-up-down');
+hourAdd = document.querySelector('.js-add-hour');
+hourSubtract = document.querySelector('.js-subtract-hour');
+minuteAdd = document.querySelector('.js-add-minute');
+minuteSubtract = document.querySelector('.js-subtract-minute');
+secondAdd = document.querySelector('.js-add-second');
+secondSubtract = document.querySelector('.js-subtract-second');
+
 // Element for alarm sound notification
 sound = document.querySelector('.js-sound');
 
@@ -15,7 +24,7 @@ sound = document.querySelector('.js-sound');
 startStopButton = document.querySelector('.js-start-stop');
 resetButton = document.querySelector('.js-reset');
 
-// Disables buttons until valid input is entered
+// Disables buttons so that valid input can be entered before starting timer
 startStopButton.disabled = true;
 resetButton.disabled = true;
 
@@ -54,10 +63,13 @@ const handleInput = (element, max) => {
 
   // If input is cleared, adds '0' digit placeholder
   if (!element.value) {
-    element.value = '0';
+    element.value = '00';
   }
+
+  isEmpty();
 };
 
+// Disables buttons until there is a valid input
 const isEmpty = () => {
   if (Number(hourInput.value) + Number(minuteInput.value) + Number(secondInput.value) > 0) {
     startStopButton.disabled = false;
@@ -66,6 +78,11 @@ const isEmpty = () => {
     startStopButton.disabled = true;
     resetButton.disabled = true;
   }
+}
+
+// Increases element value by 1 or -1
+const changeInput = (element, value) => {
+  element.value = Number(element.value) + value;
 }
 
 // Main function of timer
@@ -80,7 +97,10 @@ const countDown = (hours, minutes, seconds) => {
   minutes.type = "text";
   seconds.type = "text";
 
-  // Decreases input width for cleaner look
+  // Decreases input width and removes buttons for cleaner look
+  upDownButtons[0].classList.add('hide');
+  upDownButtons[1].classList.add('hide');
+  upDownButtons[2].classList.add('hide');
   hours.classList.add("running");
   minutes.classList.add("running");
   seconds.classList.add("running");
@@ -111,7 +131,7 @@ const countDown = (hours, minutes, seconds) => {
       if ((totalTime - timeElapsed) <= 0) {
         clearInterval(intervalID);
         sound.innerHTML = '<audio autoplay loop src="alarm.mp3"></audio>';
-        document.title = 'Time is up!'
+        document.title = 'Time is up!';
       } else {
         // Else update timer elements with Math.trunc to remove decimal values
         console.log((totalTime - timeElapsed) / 1000);
@@ -185,10 +205,14 @@ function reset() {
   minuteInput.type = "number";
   secondInput.type = "number";
 
-  // Increase width of input boxes
-  hourInput.classList.remove("running");
-  minuteInput.classList.remove("running");
-  secondInput.classList.remove("running");
+  // Increase width of input boxes and add back +/- buttons
+  upDownButtons[0].classList.remove('hide');
+  upDownButtons[1].classList.remove('hide');
+  upDownButtons[2].classList.remove('hide');
+
+  hourInput.classList.remove('running');
+  minuteInput.classList.remove('running');
+  secondInput.classList.remove('running');
 
   // Buttons are renabled
   startStopButton.disabled = true;
@@ -200,7 +224,7 @@ function reset() {
   console.log(timeBank);
 }
 
-// Checks if input exceeds maximum allowed values
+// Checks if input exceeds maximum allowed values or is empty
 hourInput.addEventListener('input', () => {
   handleInput(hourInput, 23);
   isEmpty();
@@ -216,8 +240,39 @@ secondInput.addEventListener('input', () => {
   isEmpty();
 });
 
+// Functionality for +/- buttons
+hourAdd.addEventListener('click', () => {
+  changeInput(hourInput, 1);
+  handleInput(hourInput, 23);
+});
+
+hourSubtract.addEventListener('click', () => {
+  changeInput(hourInput, -1);
+  handleInput(hourInput, 23);
+});
+
+minuteAdd.addEventListener('click', () => {
+  changeInput(minuteInput, 1);
+  handleInput(minuteInput, 59);
+});
+
+minuteSubtract.addEventListener('click', () => {
+  changeInput(minuteInput, -1);
+  handleInput(minuteInput, 59);
+});
+
+secondAdd.addEventListener('click', () => {
+  changeInput(secondInput, 1);
+  handleInput(secondInput, 59);
+});
+
+secondSubtract.addEventListener('click', () => {
+  changeInput(secondInput, -1);
+  handleInput(secondInput, 59);
+});
+
 startStopButton.addEventListener('click', () => {
   countDown(hourInput, minuteInput, secondInput);
-})
+});
 
 resetButton.addEventListener('click', reset);
