@@ -78,7 +78,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 span {
   position: relative;
-  top: -35px;
+  top: -40px;
+  left: -10px;
 }
 
 /* Decreases width of input boxes when timer is running */
