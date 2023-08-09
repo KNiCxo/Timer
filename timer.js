@@ -1,28 +1,28 @@
 // Input elements for timer
-hourInput = document.querySelector('.js-hour');
+let hourInput = document.querySelector('.js-hour');
 hourInput.value = '00';
 
-minuteInput = document.querySelector('.js-minute');
+let minuteInput = document.querySelector('.js-minute');
 minuteInput.value = '00';
 
-secondInput = document.querySelector('.js-second');
+let secondInput = document.querySelector('.js-second');
 secondInput.value ='00';
 
 // Elements for +/- buttons
-upDownButtons = document.querySelectorAll('.js-up-down');
-hourAdd = document.querySelector('.js-add-hour');
-hourSubtract = document.querySelector('.js-subtract-hour');
-minuteAdd = document.querySelector('.js-add-minute');
-minuteSubtract = document.querySelector('.js-subtract-minute');
-secondAdd = document.querySelector('.js-add-second');
-secondSubtract = document.querySelector('.js-subtract-second');
+let upDownButtons = document.querySelectorAll('.js-up-down');
+let hourAdd = document.querySelector('.js-add-hour');
+let hourSubtract = document.querySelector('.js-subtract-hour');
+let minuteAdd = document.querySelector('.js-add-minute');
+let minuteSubtract = document.querySelector('.js-subtract-minute');
+let secondAdd = document.querySelector('.js-add-second');
+let secondSubtract = document.querySelector('.js-subtract-second');
 
 // Element for alarm sound notification
-sound = document.querySelector('.js-sound');
+let sound = document.querySelector('.js-sound');
 
 // Button elements
-startStopButton = document.querySelector('.js-start-stop');
-resetButton = document.querySelector('.js-reset');
+let startStopButton = document.querySelector('.js-start-stop');
+let resetButton = document.querySelector('.js-reset');
 
 // Disables buttons so that valid input can be entered before starting timer
 startStopButton.disabled = true;
