@@ -1,26 +1,29 @@
-/* Roboto Thin Font */
+/* Roboto Thin font */
 @font-face {
   src: url(fonts/Roboto/Roboto-Thin.ttf);
   font-family: roboto-thin;
 }
 
-/* Oswald Regular Font */
+/* Oswald Regular font */
 @font-face {
   src: url(fonts/Oswald/static/Oswald-Regular.ttf);
   font-family: oswald-regular;
 }
 
+/* Styling for body */
 body {
   background-color: rgb(45, 42, 42);
   color: white;
   margin-top: 200px;
 }
 
+/* Centers clock and buttons */
 .clock, .buttons-div {
   display: flex;
   justify-content: center;
 }
 
+/* Sets clock font */
 .clock, input {
   font-family: roboto-thin;
 }
@@ -46,6 +49,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+/* Styling for +/- buttons */
 .up-down {
   display: inline-block;
   width: 22px;
@@ -63,23 +67,28 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+/* Hides +/- buttons when timer is running */
 .hide {
   visibility: hidden;
 }
 
+/* Styling for + button */
 .add {
   background-color: rgb(111, 111, 190);
   color: white;
 }
 
+/* Styling for - button */
 .subtract {
   background-color: rgb(185, 185, 189);
 }
 
+/* Styling for ":" elements */
 span {
   position: relative;
   top: -40px;
   left: -10px;
+  font-size: 200px;
 }
 
 /* Decreases width of input boxes when timer is running */
@@ -87,11 +96,8 @@ span {
   width: 210px;
 }
 
-/* Font size of colons */
-span {
-  font-size: 200px;
-}
 
+/* Styling for start/stop and reset buttons */
 .buttons {
   height: 70px;
   width: 140px;
