@@ -33,9 +33,12 @@ input {
   background: transparent;
   border: none;
   outline: none;
+  width: 80px;
+  /*
   width: 270px;
+  */
   height: 160px;
-  font-size: 200px;
+  font-size: 70px;
   color: white;
 }
 
@@ -51,11 +54,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Styling for +/- buttons */
 .up-down {
+  visibility: collapse;
+  /*
   display: inline-block;
   width: 22px;
   position: relative;
   left: -40px;
   top: 50px;
+  */
 }
 
 .up-down-buttons {
@@ -65,11 +71,6 @@ input[type=number]::-webkit-outer-spin-button {
   border: none;
   border-radius: 16px;
   cursor: pointer;
-}
-
-/* Hides +/- buttons when timer is running */
-.hide {
-  visibility: hidden;
 }
 
 /* Styling for + button */
@@ -94,16 +95,10 @@ input[type=number]::-webkit-outer-spin-button {
 /* Styling for ":" elements */
 span {
   position: relative;
-  top: -40px;
-  left: -10px;
-  font-size: 200px;
+  top: 28px;
+  left: 0px;
+  font-size: 80px;
 }
-
-/* Decreases width of input boxes when timer is running */
-.running {
-  width: 210px;
-}
-
 
 /* Styling for start/stop and reset buttons */
 .buttons {
@@ -136,4 +131,109 @@ span {
 
 .buttons:nth-child(2):hover {
   background-color: rgb(240, 240, 245);
+}
+
+/* Styling for different widths */
+@media only screen and (min-width: 428px) {
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 95px;
+    height: 160px;
+    font-size: 85px;
+    color: white;
+  }
+
+  span {
+    position: relative;
+    top: 18px;
+    left: 0px;
+    font-size: 95px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .clock {
+    margin-left: -20px;
+  }
+
+  .running-clock {
+    margin-left: 0px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 165px;
+    height: 160px;
+    font-size: 150px;
+    color: white;
+  }
+
+  span {
+    position: relative;
+    top: -37px;
+    left: 0px;
+    font-size: 180px;
+  }
+
+  .up-down {
+    visibility: visible;
+    display: inline-block;
+    width: 22px;
+    position: relative;
+    left: -10px;
+    top: 40px;
+  }
+
+  /* Hides +/- buttons when timer is running */
+  .hide {
+    visibility: hidden;
+  }
+
+  /* Decreases width of input boxes when timer is running */
+  .running-input {
+    margin-right: -20px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 160px;
+    font-size: 180px;
+    color: white;
+  }
+
+  span {
+    position: relative;
+    top: -60px;
+    left: 0px;
+    font-size: 210px;
+  }
+}
+
+/* Styling for different heights */
+
+@media only screen and (min-height: 844px) {
+  body {
+    margin-top: 230px;
+  }
+}
+
+@media only screen and (min-height: 1080px) {
+  body {
+    margin-top: 350px;
+  }
+}
+
+@media only screen and (min-height: 1280px) {
+  body {
+    margin-top: 400px;
+  }
 }

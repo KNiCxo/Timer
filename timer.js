@@ -1,3 +1,6 @@
+// Clock div element
+let clock = document.querySelector('.clock');
+
 // Input elements for timer
 let hourInput = document.querySelector('.js-hour');
 hourInput.value = '00';
@@ -101,9 +104,10 @@ const countDown = (hours, minutes, seconds) => {
   upDownButtons[0].classList.add('hide');
   upDownButtons[1].classList.add('hide');
   upDownButtons[2].classList.add('hide');
-  hours.classList.add("running");
-  minutes.classList.add("running");
-  seconds.classList.add("running");
+  clock.classList.add('running-clock');
+  hours.classList.add("running-input");
+  minutes.classList.add("running-input");
+  seconds.classList.add("running-input");
 
   // If timer is not running, make the start button say 'Stop' and begin the timer function
   if (!isOn) {
@@ -210,9 +214,10 @@ function reset() {
   upDownButtons[1].classList.remove('hide');
   upDownButtons[2].classList.remove('hide');
 
-  hourInput.classList.remove('running');
-  minuteInput.classList.remove('running');
-  secondInput.classList.remove('running');
+  clock.classList.remove('running-clock');
+  hourInput.classList.remove('running-input');
+  minuteInput.classList.remove('running-input');
+  secondInput.classList.remove('running-input');
 
   // Buttons are renabled
   startStopButton.disabled = true;
