@@ -219,7 +219,6 @@ span {
 }
 
 /* Styling for different heights */
-
 @media only screen and (min-height: 844px) {
   body {
     margin-top: 230px;
