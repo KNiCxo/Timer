@@ -34,14 +34,12 @@ input {
   border: none;
   outline: none;
   width: 80px;
-  /*
-  width: 270px;
-  */
   height: 160px;
   font-size: 70px;
   color: white;
 }
 
+/* Hides original inc/dec buttons */
 input[type="number"] {
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
@@ -55,13 +53,6 @@ input[type=number]::-webkit-outer-spin-button {
 /* Styling for +/- buttons */
 .up-down {
   visibility: collapse;
-  /*
-  display: inline-block;
-  width: 22px;
-  position: relative;
-  left: -40px;
-  top: 50px;
-  */
 }
 
 .up-down-buttons {
@@ -136,19 +127,13 @@ span {
 /* Styling for different widths */
 @media only screen and (min-width: 428px) {
   input {
-    background: transparent;
-    border: none;
-    outline: none;
     width: 95px;
     height: 160px;
     font-size: 85px;
-    color: white;
   }
 
   span {
-    position: relative;
     top: 18px;
-    left: 0px;
     font-size: 95px;
   }
 }
@@ -163,19 +148,13 @@ span {
   }
 
   input {
-    background: transparent;
-    border: none;
-    outline: none;
     width: 165px;
     height: 160px;
     font-size: 150px;
-    color: white;
   }
 
   span {
-    position: relative;
     top: -37px;
-    left: 0px;
     font-size: 180px;
   }
 
@@ -201,19 +180,13 @@ span {
 
 @media only screen and (min-width: 1000px) {
   input {
-    background: transparent;
-    border: none;
-    outline: none;
     width: 200px;
     height: 160px;
     font-size: 180px;
-    color: white;
   }
 
   span {
-    position: relative;
     top: -60px;
-    left: 0px;
     font-size: 210px;
   }
 }
